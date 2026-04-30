@@ -214,6 +214,16 @@ nav {
   50% { transform: scaleX(0.4); opacity: 0.4; }
 }
 
+.stat-link {
+  text-decoration: none;
+  display: flex; flex-direction: column; align-items: center;
+  width: 100%;
+}
+.stat-link .stat-num { transition: color 0.2s; }
+.stat-link .stat-label { transition: color 0.2s; }
+.stat-link:hover .stat-num { color: var(--teal2); }
+.stat-link:hover .stat-label { color: var(--teal); }
+
 /* ── Stats bar ── */
 .stats-bar {
   position: relative; z-index: 1;
@@ -577,7 +587,7 @@ footer {
   <div class="hero-bg-num">3D</div>
   <div class="hero-eyebrow">PhD Researcher · George Mason University</div>
   <h1 class="hero-name">Shahriar<br><em>Hossain</em></h1>
-  <p class="hero-sub">Building intelligent systems that see and understand the real world. Specializing in 3D perception, multi-sensor fusion, and language-augmented planning for autonomous systems.</p>
+  <p class="hero-sub">Building intelligent systems that see, understand, and act in the real world. Specializing in 3D perception, multi-sensor fusion, and language-augmented planning for autonomous systems.</p>
   <div class="hero-tags">
     <span class="tag">LiDAR + Camera Fusion</span>
     <span class="tag">3D Reconstruction</span>
@@ -585,7 +595,7 @@ footer {
     <span class="tag">Neural Radiance Fields</span>
     <span class="tag">ROS2</span>
     <span class="tag">Foundation Models</span>
-    <span class="tag">Robot Planning</span>
+    <span class="tag">Robot Path Planning</span>
     <span class="tag">Edge AI</span>
   </div>
   <div class="hero-ctas">
@@ -605,16 +615,20 @@ footer {
     <div class="stat-label">Peer-Reviewed Papers</div>
   </div>
   <div class="stat">
-    <div class="stat-num">7</div>
-    <div class="stat-label">First-Author Papers</div>
+    <div class="stat-num">5</div>
+    <div class="stat-label">Q1 Journal Papers</div>
   </div>
   <div class="stat">
-    <div class="stat-num">22★</div>
-    <div class="stat-label">GitHub Stars (LiDAR Repo)</div>
+    <a href="https://github.com/purpleLightningG/LiDAR-Camera-Calibration" target="_blank" class="stat-link">
+      <div class="stat-num">22★</div>
+      <div class="stat-label">GitHub Stars (LiDAR Repo)</div>
+    </a>
   </div>
   <div class="stat">
-    <div class="stat-num">CoRL</div>
-    <div class="stat-label">Workshop @ Top Robotics Conf</div>
+    <a href="https://openreview.net/forum?id=qQPp4MZbpb" target="_blank" class="stat-link">
+      <div class="stat-num">CoRL</div>
+      <div class="stat-label">Workshop @ Top Robotics Conf</div>
+    </a>
   </div>
 </div>
 
