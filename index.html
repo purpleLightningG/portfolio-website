@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahriar Hossain — Robotics & 3D Perception Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Variables ── */
+:root {
+  --bg:        #07080D;
+  --bg2:       #0D0F18;
+  --bg3:       #131620;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(0,212,170,0.2);
+  --teal:      #00D4AA;
+  --teal2:     #00FFD0;
+  --amber:     #F5A623;
+  --text:      #E8E8EE;
+  --muted:     #7A7D8C;
+  --muted2:    #4A4D5E;
+  --font-head: 'Syne', sans-serif;
+  --font-disp: 'DM Serif Display', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-head);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── Custom cursor ── */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--teal);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(0,212,170,0.4);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), width 0.2s, height 0.2s;
+}
+
+/* ── Noise overlay ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 0.4;
+}
+
+/* ── Gradient mesh bg ── */
+.mesh {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 80% 20%, rgba(0,212,170,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 600px at 10% 80%, rgba(0,100,255,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 300px 300px at 50% 50%, rgba(245,166,35,0.02) 0%, transparent 70%);
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 1.25rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(20px);
+  background: rgba(7,8,13,0.7);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.75rem; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem; font-weight: 500;
+  color: var(--teal); text-decoration: none;
+  border: 1px solid var(--border2);
+  padding: 0.45rem 1.1rem;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: var(--teal); color: var(--bg); }
+
+/* ── Hero ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem; font-weight: 400;
+  color: var(--teal);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block; width: 40px; height: 1px;
+  background: var(--teal);
+}
+.hero-name {
+  font-family: var(--font-disp);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 1.02;
+  color: var(--text);
+  opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+}
+.hero-name em { color: var(--teal); font-style: italic; }
+.hero-sub {
+  margin-top: 1.5rem;
+  font-size: 1.05rem; font-weight: 400;
+  color: var(--muted);
+  max-width: 520px; line-height: 1.7;
+  opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-tags {
+  margin-top: 2rem;
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem; font-weight: 400;
+  color: var(--muted); border: 1px solid var(--border);
+  padding: 0.3rem 0.75rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.tag:hover { border-color: var(--teal); color: var(--teal); }
+.hero-ctas {
+  margin-top: 3rem;
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.8s 1.1s forwards;
+}
+.btn-primary {
+  font-family: var(--font-mono); font-size: 0.78rem; font-weight: 500;
+  color: var(--bg); background: var(--teal);
+  padding: 0.8rem 2rem; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--teal2); transform: translateY(-1px); }
+.btn-outline {
+  font-family: var(--font-mono); font-size: 0.78rem; font-weight: 500;
+  color: var(--teal); border: 1px solid var(--border2);
+  padding: 0.8rem 2rem; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-outline:hover { background: rgba(0,212,170,0.08); transform: translateY(-1px); }
+
+/* big background number */
+.hero-bg-num {
+  position: absolute; right: 4rem; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-disp);
+  font-size: clamp(200px, 25vw, 380px);
+  color: rgba(255,255,255,0.02);
+  line-height: 1; pointer-events: none;
+  user-select: none;
+}
+
+/* scroll indicator */
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 4rem;
+  display: flex; align-items: center; gap: 0.75rem;
+  font-family: var(--font-mono); font-size: 0.65rem;
+  color: var(--muted2); letter-spacing: 0.15em;
+  animation: fadeUp 0.8s 1.4s forwards; opacity: 0;
+}
+.scroll-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(to right, var(--teal), transparent);
+  animation: scrollLine 2s 2s infinite;
+}
+@keyframes scrollLine {
+  0%,100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(0.4); opacity: 0.4; }
+}
+
+/* ── Stats bar ── */
+.stats-bar {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: repeat(4,1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.stat {
+  padding: 2rem; text-align: center;
+  border-right: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.stat:last-child { border-right: none; }
+.stat:hover { background: var(--bg3); }
+.stat-num {
+  font-family: var(--font-disp);
+  font-size: 2.6rem; color: var(--teal);
+  line-height: 1;
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; color: var(--muted);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+
+/* ── Sections ── */
+section { position: relative; z-index: 1; }
+.sec-wrap { max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
+.sec-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem; font-weight: 400;
+  color: var(--teal); letter-spacing: 0.25em;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1rem;
+}
+.sec-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border);
+}
+.sec-title {
+  font-family: var(--font-disp);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--text); line-height: 1.15;
+  margin-bottom: 3rem;
+}
+
+/* ── About ── */
+#about { background: var(--bg2); }
+.about-grid {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem;
+  align-items: start;
+}
+.about-text p {
+  font-size: 1.05rem; color: var(--muted); line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+.about-text p strong { color: var(--text); font-weight: 500; }
+.about-text p em { color: var(--teal); font-style: normal; }
+.about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+.info-row {
+  display: flex; flex-direction: column; gap: 0.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.info-row:last-child { border-bottom: none; }
+.info-label {
+  font-family: var(--font-mono); font-size: 0.6rem;
+  color: var(--muted2); letter-spacing: 0.2em; text-transform: uppercase;
+}
+.info-val { font-size: 0.92rem; color: var(--text); font-weight: 500; }
+.info-val a { color: var(--teal); text-decoration: none; }
+.info-val a:hover { text-decoration: underline; }
+
+/* ── Experience ── */
+#experience { background: var(--bg); }
+.exp-list { display: flex; flex-direction: column; gap: 0; }
+.exp-item {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 0 3rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+  position: relative;
+}
+.exp-item:first-child { border-top: 1px solid var(--border); }
+.exp-item::before {
+  content: '';
+  position: absolute; left: -4rem; top: 0; bottom: 0; width: 2px;
+  background: transparent;
+  transition: background 0.3s;
+}
+.exp-item:hover::before { background: var(--teal); }
+.exp-item:hover { background: rgba(0,212,170,0.02); padding-left: 0.5rem; }
+.exp-date {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  color: var(--muted2); padding-top: 0.3rem; line-height: 1.6;
+}
+.exp-role { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+.exp-org {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  color: var(--teal); margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.exp-bullets li {
+  font-size: 0.9rem; color: var(--muted); line-height: 1.65;
+  display: flex; gap: 0.75rem; align-items: flex-start;
+}
+.exp-bullets li::before {
+  content: '→'; color: var(--teal); flex-shrink: 0;
+  font-family: var(--font-mono); font-size: 0.75rem; margin-top: 0.15rem;
+}
+
+/* ── Projects ── */
+#projects { background: var(--bg2); }
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr));
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.proj-card {
+  background: var(--bg2);
+  padding: 2rem;
+  transition: background 0.2s;
+  position: relative; overflow: hidden;
+}
+.proj-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--teal), transparent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.proj-card:hover { background: var(--bg3); }
+.proj-card:hover::after { transform: scaleX(1); }
+.proj-card.featured { grid-column: span 2; }
+.proj-tag {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.proj-title { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
+.proj-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+.proj-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+.proj-chip {
+  font-family: var(--font-mono); font-size: 0.6rem;
+  color: var(--muted2); border: 1px solid var(--border);
+  padding: 0.2rem 0.55rem;
+}
+.proj-link {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  color: var(--teal); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  transition: gap 0.2s;
+}
+.proj-link:hover { gap: 0.7rem; }
+.proj-stars {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  color: var(--amber); margin-left: auto;
+}
+
+/* ── Publications ── */
+#publications { background: var(--bg); }
+.pub-list { display: flex; flex-direction: column; gap: 0; }
+.pub-item {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 0 2rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.pub-item:first-child { border-top: 1px solid var(--border); }
+.pub-year {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  color: var(--muted2); padding-top: 0.2rem;
+}
+.pub-content {}
+.pub-badge {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 0.58rem; font-weight: 500;
+  padding: 0.18rem 0.55rem; margin-bottom: 0.5rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.pub-badge.q1 { background: rgba(0,212,170,0.12); color: var(--teal); border: 1px solid rgba(0,212,170,0.25); }
+.pub-badge.q2 { background: rgba(245,166,35,0.1); color: var(--amber); border: 1px solid rgba(245,166,35,0.25); }
+.pub-badge.conf { background: rgba(150,100,255,0.1); color: #B088FF; border: 1px solid rgba(150,100,255,0.25); }
+.pub-badge.first { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid var(--border); }
+.pub-title {
+  font-size: 0.95rem; font-weight: 500; color: var(--text);
+  line-height: 1.5; margin-bottom: 0.4rem;
+}
+.pub-venue { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+
+/* ── Skills ── */
+#skills { background: var(--bg2); }
+.skills-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+}
+.skill-group {
+  background: var(--bg2); padding: 1.75rem;
+  transition: background 0.2s;
+}
+.skill-group:hover { background: var(--bg3); }
+.skill-group-title {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  color: var(--teal); letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.skill-items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.skill-pill {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  color: var(--text); background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.7rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.skill-pill:hover { border-color: var(--teal); color: var(--teal); }
+
+/* ── Awards ── */
+#awards { background: var(--bg); }
+.awards-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--border); border: 1px solid var(--border); }
+.award-card {
+  background: var(--bg); padding: 2rem;
+  transition: background 0.2s;
+}
+.award-card:hover { background: var(--bg3); }
+.award-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+.award-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+.award-org { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+
+/* ── Contact ── */
+#contact {
+  background: var(--bg2);
+  text-align: center;
+}
+#contact .sec-wrap {
+  display: flex; flex-direction: column; align-items: center;
+}
+.contact-super {
+  font-family: var(--font-disp); font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--muted); margin-bottom: 0.75rem;
+}
+.contact-title {
+  font-family: var(--font-disp);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--text); line-height: 1.1; margin-bottom: 2rem;
+}
+.contact-title em { color: var(--teal); font-style: italic; }
+.contact-links {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+  justify-content: center; margin-top: 1rem;
+}
+.contact-link {
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--muted); text-decoration: none;
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  min-width: 130px;
+}
+.contact-link:hover {
+  border-color: var(--teal); color: var(--teal);
+  background: rgba(0,212,170,0.05);
+}
+.contact-link-icon { font-size: 1.4rem; }
+.contact-link-label { letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.62rem; }
+
+/* ── Footer ── */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  position: relative; z-index: 1;
+}
+.footer-left { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted2); }
+.footer-right { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted2); }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  #hero { padding: 0 1.5rem; }
+  .sec-wrap { padding: 4rem 1.5rem; }
+  .stats-bar { grid-template-columns: repeat(2,1fr); }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .proj-card.featured { grid-column: span 1; }
+  .pub-item { grid-template-columns: 60px 1fr; gap: 0 1rem; }
+  .awards-list { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .hero-bg-num { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="mesh"></div>
+
+<!-- Nav -->
+<nav>
+  <a href="#hero" class="nav-logo">SH_PORTFOLIO</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Papers</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:shossa4@gmu.edu" class="nav-cta">Get in touch →</a>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-bg-num">3D</div>
+  <div class="hero-eyebrow">PhD Researcher · George Mason University</div>
+  <h1 class="hero-name">Shahriar<br><em>Hossain</em></h1>
+  <p class="hero-sub">Building intelligent robots that see, understand, and act in the real world. Specializing in 3D perception, multi-sensor fusion, and language-augmented planning for autonomous systems.</p>
+  <div class="hero-tags">
+    <span class="tag">LiDAR + Camera Fusion</span>
+    <span class="tag">3D Reconstruction</span>
+    <span class="tag">SLAM</span>
+    <span class="tag">Neural Radiance Fields</span>
+    <span class="tag">ROS2</span>
+    <span class="tag">Foundation Models</span>
+    <span class="tag">Robot Planning</span>
+    <span class="tag">Edge AI</span>
+  </div>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn-primary">View Projects</a>
+    <a href="mailto:shossa4@gmu.edu" class="btn-outline">Hire Me</a>
+  </div>
+  <div class="scroll-hint">
+    <span class="scroll-line"></span>
+    SCROLL TO EXPLORE
+  </div>
+</section>
+
+<!-- Stats Bar -->
+<div class="stats-bar reveal">
+  <div class="stat">
+    <div class="stat-num">14+</div>
+    <div class="stat-label">Peer-Reviewed Papers</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">262+</div>
+    <div class="stat-label">Citations (IEEE JBHI)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">22★</div>
+    <div class="stat-label">GitHub Stars (LiDAR Repo)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">CoRL</div>
+    <div class="stat-label">Workshop @ Top Robotics Conf</div>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="sec-wrap">
+    <div class="sec-label">01 — About</div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a <strong>PhD researcher in Computer Science at George Mason University</strong>, where I build perception and planning systems for autonomous robots. My work lives at the intersection of <em>3D computer vision</em>, <em>multi-sensor fusion</em>, and <em>embodied AI</em> — systems that not only see the world but reason about it.</p>
+        <p>At the Living Innovation Lab, I develop <strong>real-time pipelines fusing LiDAR, RGB-T cameras, and GNSS</strong> on edge hardware for warehouse robots — from change detection to 6DOF end-effector pose estimation for robotic arms. My research has been deployed on actual hardware, not just benchmarks.</p>
+        <p>My CoRL 2024 workshop paper introduced an <strong>LLM-augmented planning approach</strong> for robot object search — using language model predictions to bias navigation toward semantically plausible locations, reducing search steps significantly.</p>
+        <p>Before GMU, I published Q1 research at BRAC University and shipped embedded ML systems on <strong>Jetson Nano</strong> for real-time vehicle perception at Arthor Limited. I placed <strong>3rd and 4th at the University Rover Challenge</strong> — one of the few competitions where the robot has to survive in the real world, not just a simulation.</p>
+      </div>
+      <div class="about-sidebar reveal">
+        <div class="info-row">
+          <span class="info-label">Status</span>
+          <span class="info-val">PhD Candidate — CS, GMU</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Location</span>
+          <span class="info-val">Fairfax, Virginia, USA</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email</span>
+          <span class="info-val"><a href="mailto:shossa4@gmu.edu">shossa4@gmu.edu</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">GitHub</span>
+          <span class="info-val"><a href="https://github.com/purpleLightningG" target="_blank">purpleLightningG</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Google Scholar</span>
+          <span class="info-val"><a href="https://scholar.google.com/citations?user=UL1s_poAAAAJ" target="_blank">View Profile →</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Research Focus</span>
+          <span class="info-val">3D Perception · SLAM · Neural 3D Representations · Robot Planning</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Open To</span>
+          <span class="info-val">Summer 2026 Research Internships</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="sec-wrap">
+    <div class="sec-label">02 — Experience</div>
+    <h2 class="sec-title reveal">Where I've<br>Built Things</h2>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-date">May 2024<br>→ Present</div>
+        <div>
+          <div class="exp-role">Graduate Research Assistant</div>
+          <div class="exp-org">Living Innovation Lab, George Mason University</div>
+          <ul class="exp-bullets">
+            <li>Building real-time object detection pipeline fusing RGB-T camera, LiDAR, and GNSS for autonomous perception deployed on edge servers</li>
+            <li>Developed real-time 3D reconstruction and multi-modal sensor fusion pipeline (RGB-D + LiDAR) for change detection of warehouse mobile robots and robot arms</li>
+            <li>Built ROS2 pipelines supporting SLAM, depth estimation, localization, and neural 3D representation generation optimized for embedded platforms</li>
+            <li>Built spatio-temporal vision model performing simultaneous 6DOF end-effector pose estimation, action-state classification, and geometric task-feasibility assessment</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">May 2024<br>→ Jul 2024</div>
+        <div>
+          <div class="exp-role">Graduate Research Assistant</div>
+          <div class="exp-org">RAIL Group, George Mason University</div>
+          <ul class="exp-bullets">
+            <li>Developed and optimized task planning and autonomous decision-making algorithms using LLMs for robotics — led to first-author CoRL 2024 workshop publication</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Nov 2021<br>→ Jul 2023</div>
+        <div>
+          <div class="exp-role">Graduate Research Assistant</div>
+          <div class="exp-org">BRAC University</div>
+          <ul class="exp-bullets">
+            <li>Conducted ML/DL experiments on image/video datasets implementing 2D/3D detection, segmentation, and classification pipelines</li>
+            <li>Generated synthetic point clouds and diffusion-based 3D representations for scene understanding and neural 3D perception</li>
+            <li>Published 6 peer-reviewed papers (Q1 journals) in robotics, autonomous systems, and multi-modal perception</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Mar 2021<br>→ Jun 2021</div>
+        <div>
+          <div class="exp-role">Embedded ML &amp; Computer Vision Intern</div>
+          <div class="exp-org">Arthor Limited</div>
+          <ul class="exp-bullets">
+            <li>Implemented object detection and multi-sensor fusion on Jetson Nano for low-latency perception and control</li>
+            <li>Built end-to-end data collection and processing pipelines for vehicle sensors enabling real-time navigation and decision-making</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="sec-wrap">
+    <div class="sec-label">03 — Projects</div>
+    <h2 class="sec-title reveal">Selected<br>Builds</h2>
+    <div class="projects-grid">
+      <div class="proj-card featured reveal">
+        <div class="proj-tag">📡 Featured · 22 GitHub Stars</div>
+        <div class="proj-title">LiDAR–Camera Extrinsic Calibration Pipeline</div>
+        <div class="proj-desc">Robust, reproducible LiDAR–camera extrinsic calibration using checkerboard and AprilTag targets. Implements reprojection error minimization, point-to-pixel alignment validation, and utilities for saving/consuming [R|t] transforms. One of the most starred robotics calibration repos for individual researchers.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">Python</span>
+          <span class="proj-chip">ROS2</span>
+          <span class="proj-chip">OpenCV</span>
+          <span class="proj-chip">Open3D</span>
+          <span class="proj-chip">NumPy</span>
+          <span class="proj-chip" style="margin-left:auto;color:var(--amber);">★ 22</span>
+        </div>
+        <a href="https://github.com/purpleLightningG/LiDAR-Camera-Calibration" target="_blank" class="proj-link">View on GitHub →</a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🔷 3D Deep Learning</div>
+        <div class="proj-title">Point Cloud Completion (pcdCompletion)</div>
+        <div class="proj-desc">Custom conditional DDPM trained on KITTI-style data for depth completion. Implements a linear beta schedule (1000 timesteps, Ho et al. 2020) with a conditioning network that takes semantic labels and plane distance as priors.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">PyTorch</span>
+          <span class="proj-chip">DDPM</span>
+          <span class="proj-chip">KITTI</span>
+          <span class="proj-chip">Point Clouds</span>
+        </div>
+        <a href="https://github.com/purpleLightningG/pcdCompletion" target="_blank" class="proj-link">View on GitHub →</a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🧠 Weak Supervision</div>
+        <div class="proj-title">PointNet++ with Weak Labels</div>
+        <div class="proj-desc">PointNet baseline on first-hand LiDAR .pcd data. Generates weak multi-label targets via DBSCAN and size heuristics, converts to .npy, and trains a reproducible PyTorch model with full normalization pipeline.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">PyTorch</span>
+          <span class="proj-chip">PointNet++</span>
+          <span class="proj-chip">DBSCAN</span>
+          <span class="proj-chip">LiDAR</span>
+        </div>
+        <a href="https://github.com/purpleLightningG/pointnet-weaklabels-pcd" target="_blank" class="proj-link">View on GitHub →</a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🌐 Neural 3D</div>
+        <div class="proj-title">NeRF + Gaussian Splatting</div>
+        <div class="proj-desc">Neural Radiance Field implementation for novel view synthesis combined with 3D Gaussian Splatting for real-time rendering. Applied to scene understanding and neural 3D representation pipelines in robotic environments.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">PyTorch</span>
+          <span class="proj-chip">NeRF</span>
+          <span class="proj-chip">3DGS</span>
+          <span class="proj-chip">Novel View Synthesis</span>
+        </div>
+        <a href="https://github.com/purpleLightningG" target="_blank" class="proj-link">View on GitHub →</a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🤖 Foundation Models</div>
+        <div class="proj-title">SAM2 Fine-Tuning for Robotic Perception</div>
+        <div class="proj-desc">Fine-tuned SAM2 with LoRA/adapter layers for multi-modal 2D/3D perception tasks. Includes GroundingDINO + SAM2 pipeline for text-conditioned mask generation, benchmarked under domain shift (lighting, weather, camera intrinsics).</div>
+        <div class="proj-meta">
+          <span class="proj-chip">SAM2</span>
+          <span class="proj-chip">LoRA</span>
+          <span class="proj-chip">GroundingDINO</span>
+          <span class="proj-chip">HuggingFace</span>
+          <span class="proj-chip">W&amp;B</span>
+        </div>
+        <a href="https://github.com/purpleLightningG" target="_blank" class="proj-link">View on GitHub →</a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🗺️ Robot Planning</div>
+        <div class="proj-title">ROS2 Motion Planning Suite</div>
+        <div class="proj-desc">A*, D* Lite, and RRT* planning algorithms implemented in ROS2, integrated with LiDAR-based real-time object detection for autonomous navigation. Includes RGB and GNSS sensor integration for full outdoor localization.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">ROS2</span>
+          <span class="proj-chip">A*</span>
+          <span class="proj-chip">RRT*</span>
+          <span class="proj-chip">LiDAR</span>
+          <span class="proj-chip">GNSS</span>
+        </div>
+        <a href="https://github.com/purpleLightningG" target="_blank" class="proj-link">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Publications -->
+<section id="publications">
+  <div class="sec-wrap">
+    <div class="sec-label">04 — Publications</div>
+    <h2 class="sec-title reveal">14 Peer-Reviewed<br>Papers</h2>
+    <div class="pub-list">
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2025</div>
+        <div class="pub-content">
+          <span class="pub-badge q1">Q1 · PLoS ONE</span>
+          <div class="pub-title">Optimizing Network Bandwidth Slicing Identification: NADAM-Enhanced CNN and VAE Data Preprocessing for Enhanced Interpretability</div>
+          <div class="pub-venue">PLoS ONE 20(10) · IF 2.6</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2025</div>
+        <div class="pub-content">
+          <span class="pub-badge q2">Q2 · Baghdad Science Journal</span>
+          <div class="pub-title">Medicinal Plant Leaf Classification using Deep Learning and Vision Transformers</div>
+          <div class="pub-venue">Baghdad Science Journal 22(3)</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2024</div>
+        <div class="pub-content">
+          <span class="pub-badge conf">Workshop · CoRL 2024</span>
+          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
+          <div class="pub-title">Enhancing Object Search by Augmenting Planning with Predictions from Large Language Models</div>
+          <div class="pub-venue">2nd LEAP Workshop on Learning Effective Abstractions for Planning · CoRL 2024</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2024</div>
+        <div class="pub-content">
+          <span class="pub-badge q1">Q1 · MDPI AI</span>
+          <div class="pub-title">ECARRNet: An Efficient LSTM-Based Ensembled Deep Neural Network Architecture for Railway Fault Detection</div>
+          <div class="pub-venue">AI 5(2), 482–503 · IF 5.0 · 30 citations</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2024</div>
+        <div class="pub-content">
+          <span class="pub-badge q1">Q1 · IEEE Access</span>
+          <div class="pub-title">Semantic Segmentation on Panoramic Dental X-Ray Images using U-Net Architectures</div>
+          <div class="pub-venue">IEEE Access 12, 44598–44612 · IF 3.6 · 42 citations</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2024</div>
+        <div class="pub-content">
+          <span class="pub-badge conf">Conference · ICEIC 2024</span>
+          <div class="pub-title">Gastrointestinal Insights Redefined: An Integrated Hybrid Model Fusing Vision Transformer and Transfer Learning</div>
+          <div class="pub-venue">6th International Conference on Electrical Engineering and Information Communication Technology</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2023</div>
+        <div class="pub-content">
+          <span class="pub-badge q1">Q1 · IEEE JBHI</span>
+          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
+          <div class="pub-title">Vision Transformers, Ensemble Model, and Transfer Learning Leveraging Explainable AI for Brain Tumor Detection and Classification</div>
+          <div class="pub-venue">IEEE Journal of Biomedical and Health Informatics 28(3), 1261–1272 · IF 6.8 · <strong style="color:var(--teal)">262 citations</strong></div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2023</div>
+        <div class="pub-content">
+          <span class="pub-badge q1">Q1 · MDPI Sensors</span>
+          <div class="pub-title">Aggregating Different Scales of Attention on Feature Variants for Tomato Leaf Disease Diagnosis from Image Data: A Transformer Driven Study</div>
+          <div class="pub-venue">Sensors 23(7), 3751 · IF 3.5 · 55 citations</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2023</div>
+        <div class="pub-content">
+          <span class="pub-badge conf">Conference · IEEE ISMI 2023</span>
+          <div class="pub-title">Real-Time Mastitis Detection in Livestock using Deep Learning and Machine Learning Leveraging Edge Devices</div>
+          <div class="pub-venue">IEEE 17th International Symposium on Medical Information and Communication Technology</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2022</div>
+        <div class="pub-content">
+          <span class="pub-badge conf">Conference · IEEE ICCIT 2022</span>
+          <div class="pub-title">Surveillance in Maritime Scenario using Deep Learning and Swarm Intelligence</div>
+          <div class="pub-venue">25th International Conference on Computer and Information Technology · 7 citations</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2022</div>
+        <div class="pub-content">
+          <span class="pub-badge conf">Conference · IEEE ICCIT 2022</span>
+          <div class="pub-title">A Novel Traffic Simulator for Evaluating Complex SIoT-Based Algorithms in Typical Road Traffic Scenarios</div>
+          <div class="pub-venue">25th International Conference on Computer and Information Technology</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2021</div>
+        <div class="pub-content">
+          <span class="pub-badge conf">Conference · ICIRCA 2021</span>
+          <div class="pub-title">Brain Tumor Prediction by Analyzing MRI using Deep Learning Architectures</div>
+          <div class="pub-venue">3rd International Conference on Inventive Research in Computing Applications</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2021</div>
+        <div class="pub-content">
+          <span class="pub-badge conf">Conference · ICICT 2021</span>
+          <div class="pub-title">RansomListener: Ransom Call Sound Investigation using LSTM and CNN Architectures</div>
+          <div class="pub-venue">6th International Conference on Inventive Computation Technologies</div>
+        </div>
+      </div>
+
+      <div class="pub-item reveal">
+        <div class="pub-year">2020</div>
+        <div class="pub-content">
+          <span class="pub-badge conf">Conference · ICCTAA 2020</span>
+          <div class="pub-title">Pneumonia Detection by Analyzing X-Ray Images using MobileNet, ResNet Architecture and Long Short Term Memory</div>
+          <div class="pub-venue">30th International Conference on Computer Theory and Applications</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="sec-wrap">
+    <div class="sec-label">05 — Technical Skills</div>
+    <h2 class="sec-title reveal">Tools &amp;<br>Technologies</h2>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-items">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">C++</span>
+          <span class="skill-pill">CUDA (basic)</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Frameworks</div>
+        <div class="skill-items">
+          <span class="skill-pill">PyTorch</span>
+          <span class="skill-pill">TensorFlow</span>
+          <span class="skill-pill">OpenCV</span>
+          <span class="skill-pill">Open3D</span>
+          <span class="skill-pill">HuggingFace</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Robotics Stack</div>
+        <div class="skill-items">
+          <span class="skill-pill">ROS2</span>
+          <span class="skill-pill">Gazebo</span>
+          <span class="skill-pill">RViz</span>
+          <span class="skill-pill">CARLA</span>
+          <span class="skill-pill">MuJoCo</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Perception Methods</div>
+        <div class="skill-items">
+          <span class="skill-pill">SLAM</span>
+          <span class="skill-pill">Depth Estimation</span>
+          <span class="skill-pill">Scene Flow</span>
+          <span class="skill-pill">Visual Odometry</span>
+          <span class="skill-pill">Sensor Fusion</span>
+          <span class="skill-pill">NeRF</span>
+          <span class="skill-pill">3D Gaussian Splatting</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">AI / ML Methods</div>
+        <div class="skill-items">
+          <span class="skill-pill">3D Detection</span>
+          <span class="skill-pill">Semantic Segmentation</span>
+          <span class="skill-pill">SAM2 / LoRA</span>
+          <span class="skill-pill">VLMs</span>
+          <span class="skill-pill">Diffusion Models</span>
+          <span class="skill-pill">Reinforcement Learning</span>
+          <span class="skill-pill">LLM Planning</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Hardware / Tools</div>
+        <div class="skill-items">
+          <span class="skill-pill">Jetson Nano</span>
+          <span class="skill-pill">LiDAR</span>
+          <span class="skill-pill">RGB-D Cameras</span>
+          <span class="skill-pill">Raspberry Pi</span>
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">W&amp;B</span>
+          <span class="skill-pill">Linux</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Awards -->
+<section id="awards">
+  <div class="sec-wrap">
+    <div class="sec-label">06 — Recognition</div>
+    <h2 class="sec-title reveal">Awards &amp;<br>Fellowships</h2>
+    <div class="awards-list reveal">
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <div class="award-title">University Rover Challenge — 3rd &amp; 4th Place</div>
+        <div class="award-org">Mars Society · 2020 &amp; 2021 · One of the world's most demanding student robotics competitions</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">☁️</div>
+        <div class="award-title">AWS Machine Learning Scholarship</div>
+        <div class="award-org">Amazon Web Services + Udacity · 2021 · Competitive merit-based ML award</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">📄</div>
+        <div class="award-title">Quality Journal Publication Award</div>
+        <div class="award-org">BRAC University · 2024 · Awarded for Q1 publications in IEEE JBHI and IEEE Access</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="sec-wrap">
+    <p class="contact-super">Open to Summer 2026 Research Internships</p>
+    <h2 class="contact-title">Let's build<br><em>something real</em></h2>
+    <div class="contact-links reveal">
+      <a href="mailto:shossa4@gmu.edu" class="contact-link">
+        <span class="contact-link-icon">✉️</span>
+        <span class="contact-link-label">Email</span>
+      </a>
+      <a href="https://github.com/purpleLightningG" target="_blank" class="contact-link">
+        <span class="contact-link-icon">⌥</span>
+        <span class="contact-link-label">GitHub</span>
+      </a>
+      <a href="https://scholar.google.com/citations?user=UL1s_poAAAAJ" target="_blank" class="contact-link">
+        <span class="contact-link-icon">📚</span>
+        <span class="contact-link-label">Scholar</span>
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="contact-link">
+        <span class="contact-link-icon">🔗</span>
+        <span class="contact-link-label">LinkedIn</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span class="footer-left">Shahriar Hossain · PhD Researcher · George Mason University</span>
+  <span class="footer-right" id="footer-year"></span>
+</footer>
+
+<script>
+// ── Custom cursor ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+});
+function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a, button, .proj-card, .exp-item, .stat').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform += ' scale(2)';
+    ring.style.width = '56px'; ring.style.height = '56px';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = '36px'; ring.style.height = '36px';
+  });
+});
+
+// ── Scroll reveal ──
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => io.observe(el));
+
+// ── Footer year ──
+document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear();
+
+// ── Smooth nav highlight ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current
+      ? 'var(--teal)' : '';
+  });
+});
+</script>
+</body>
+</html>
