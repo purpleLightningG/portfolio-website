@@ -321,7 +321,7 @@ section { position: relative; z-index: 1; }
 }
 .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 .exp-bullets li {
-  font-size: 0.9rem; color: var(--muted); line-height: 1.65;
+  font-size: 1.05rem; color: var(--muted); line-height: 1.65;
   display: flex; gap: 0.75rem; align-items: flex-start;
 }
 .exp-bullets li::before {
@@ -359,7 +359,7 @@ section { position: relative; z-index: 1; }
   margin-bottom: 1rem;
 }
 .proj-title { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
-.proj-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+.proj-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
 .proj-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
 .proj-chip {
   font-family: var(--font-mono); font-size: 0.6rem;
@@ -454,6 +454,13 @@ section { position: relative; z-index: 1; }
   background: var(--bg2);
   text-align: center;
 }
+/* Reset button to match anchor contact-link style */
+button.contact-link {
+  background: transparent;
+  border: 1px solid var(--border);
+  font-family: var(--font-head);
+  color: var(--muted);
+}
 #contact .sec-wrap {
   display: flex; flex-direction: column; align-items: center;
 }
@@ -487,6 +494,23 @@ section { position: relative; z-index: 1; }
 }
 .contact-link-icon { font-size: 1.4rem; }
 .contact-link-label { letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.62rem; }
+
+/* ── Toast notification ── */
+.toast {
+  position: fixed; bottom: 2rem; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--teal); color: var(--bg);
+  font-family: var(--font-mono); font-size: 0.72rem;
+  font-weight: 500; letter-spacing: 0.1em;
+  padding: 0.65rem 1.5rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 9999;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 
 /* ── Footer ── */
 footer {
@@ -1030,10 +1054,10 @@ footer {
     <p class="contact-super">Open to Summer 2026 Research Internships</p>
     <h2 class="contact-title">Let's build<br><em>something real</em></h2>
     <div class="contact-links reveal">
-      <a href="mailto:shossa4@gmu.edu" class="contact-link">
+      <button onclick="copyEmail()" class="contact-link" id="email-btn">
         <span class="contact-link-icon">✉️</span>
-        <span class="contact-link-label">Email</span>
-      </a>
+        <span class="contact-link-label" id="email-label">Email</span>
+      </button>
       <a href="https://github.com/purpleLightningG" target="_blank" class="contact-link">
         <span class="contact-link-icon">⌥</span>
         <span class="contact-link-label">GitHub</span>
@@ -1056,8 +1080,52 @@ footer {
   <span class="footer-right" id="footer-year"></span>
 </footer>
 
+<!-- Toast -->
+<div class="toast" id="toast">mail copied</div>
+
 <script>
-// ── Custom cursor ──
+// ── Copy email to clipboard ──
+function copyEmail() {
+  const email = 'shossa4@gmu.edu';
+  const toast = document.getElementById('toast');
+  const label = document.getElementById('email-label');
+
+  navigator.clipboard.writeText(email).then(() => {
+    // Step 1: show the email address for 0.5s
+    toast.textContent = email;
+    toast.classList.add('show');
+    label.textContent = email;
+
+    // Step 2: after 0.5s switch to 'mail copied' for 4s
+    setTimeout(() => {
+      toast.textContent = 'mail copied';
+      label.textContent = 'mail copied';
+
+      // Step 3: hide after 4s and reset
+      setTimeout(() => {
+        toast.classList.remove('show');
+        label.textContent = 'Email';
+        // Reset toast text after fade out
+        setTimeout(() => { toast.textContent = 'mail copied'; }, 300);
+      }, 4000);
+    }, 500);
+
+  }).catch(() => {
+    // Fallback: same sequence but email was not copied
+    toast.textContent = email;
+    toast.classList.add('show');
+    label.textContent = email;
+    setTimeout(() => {
+      toast.textContent = 'mail copied';
+      label.textContent = 'mail copied';
+      setTimeout(() => {
+        toast.classList.remove('show');
+        label.textContent = 'Email';
+        setTimeout(() => { toast.textContent = 'mail copied'; }, 300);
+      }, 4000);
+    }, 500);
+  });
+}
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
 let mx = 0, my = 0, rx = 0, ry = 0;
