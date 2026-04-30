@@ -36,6 +36,8 @@ body {
   overflow-x: hidden;
   cursor: none;
 }
+/* Restore pointer events on all clickable elements */
+a, button, [role="button"] { cursor: none; pointer-events: auto; }
 
 /* ── Custom cursor ── */
 .cursor {
@@ -261,8 +263,7 @@ section { position: relative; z-index: 1; }
   margin-bottom: 3rem;
 }
 
-/* ── About ── */
-#about { background: var(--bg2); }
+
 .about-grid {
   display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem;
   align-items: start;
@@ -544,7 +545,7 @@ footer {
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:shossa4@gmu.edu" class="nav-cta">Get in touch →</a>
+  <a href="#contact" class="nav-cta">Get in touch →</a>
 </nav>
 
 <!-- Hero -->
@@ -565,7 +566,7 @@ footer {
   </div>
   <div class="hero-ctas">
     <a href="#projects" class="btn-primary">View Projects</a>
-    <a href="mailto:shossa4@gmu.edu" class="btn-outline">Hire Me</a>
+    <a href="#contact" class="btn-outline">Hire Me</a>
   </div>
   <div class="scroll-hint">
     <span class="scroll-line"></span>
@@ -580,8 +581,8 @@ footer {
     <div class="stat-label">Peer-Reviewed Papers</div>
   </div>
   <div class="stat">
-    <div class="stat-num">262+</div>
-    <div class="stat-label">Citations (IEEE JBHI)</div>
+    <div class="stat-num">7</div>
+    <div class="stat-label">First-Author Papers</div>
   </div>
   <div class="stat">
     <div class="stat-num">22★</div>
@@ -675,7 +676,7 @@ footer {
           <ul class="exp-bullets">
             <li>Conducted ML/DL experiments on image/video datasets implementing 2D/3D detection, segmentation, and classification pipelines</li>
             <li>Generated synthetic point clouds and diffusion-based 3D representations for scene understanding and neural 3D perception</li>
-            <li>Published 6 peer-reviewed papers (Q1 journals) in robotics, autonomous systems, and multi-modal perception</li>
+            <li>Published 6 peer-reviewed papers (3 Q1 journals) in image classification and object detection</li>
           </ul>
         </div>
       </div>
@@ -748,7 +749,7 @@ footer {
           <span class="proj-chip">3DGS</span>
           <span class="proj-chip">Novel View Synthesis</span>
         </div>
-        <a href="https://github.com/purpleLightningG" target="_blank" class="proj-link">View on GitHub →</a>
+        <a href="https://github.com/purpleLightningG/NeRF-GaussianSplatting" target="_blank" class="proj-link">View on GitHub →</a>
       </div>
       <div class="proj-card reveal">
         <div class="proj-tag">🤖 Foundation Models</div>
@@ -761,7 +762,7 @@ footer {
           <span class="proj-chip">HuggingFace</span>
           <span class="proj-chip">W&amp;B</span>
         </div>
-        <a href="https://github.com/purpleLightningG" target="_blank" class="proj-link">View on GitHub →</a>
+        <a href="https://github.com/purpleLightningG/SAM2-robotic-perception" target="_blank" class="proj-link">View on GitHub →</a>
       </div>
       <div class="proj-card reveal">
         <div class="proj-tag">🗺️ Robot Planning</div>
@@ -774,7 +775,7 @@ footer {
           <span class="proj-chip">LiDAR</span>
           <span class="proj-chip">GNSS</span>
         </div>
-        <a href="https://github.com/purpleLightningG" target="_blank" class="proj-link">View on GitHub →</a>
+        <a href="https://github.com/purpleLightningG/ros2-motion-planning" target="_blank" class="proj-link">View on GitHub →</a>
       </div>
     </div>
   </div>
@@ -800,6 +801,7 @@ footer {
         <div class="pub-year">2025</div>
         <div class="pub-content">
           <span class="pub-badge q2">Q2 · Baghdad Science Journal</span>
+          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
           <div class="pub-title">Medicinal Plant Leaf Classification using Deep Learning and Vision Transformers</div>
           <div class="pub-venue">Baghdad Science Journal 22(3)</div>
         </div>
@@ -820,7 +822,7 @@ footer {
         <div class="pub-content">
           <span class="pub-badge q1">Q1 · MDPI AI</span>
           <div class="pub-title">ECARRNet: An Efficient LSTM-Based Ensembled Deep Neural Network Architecture for Railway Fault Detection</div>
-          <div class="pub-venue">AI 5(2), 482–503 · IF 5.0 · 30 citations</div>
+          <div class="pub-venue">AI 5(2), 482–503 · IF 5.0</div>
         </div>
       </div>
 
@@ -829,7 +831,7 @@ footer {
         <div class="pub-content">
           <span class="pub-badge q1">Q1 · IEEE Access</span>
           <div class="pub-title">Semantic Segmentation on Panoramic Dental X-Ray Images using U-Net Architectures</div>
-          <div class="pub-venue">IEEE Access 12, 44598–44612 · IF 3.6 · 42 citations</div>
+          <div class="pub-venue">IEEE Access 12, 44598–44612 · IF 3.6</div>
         </div>
       </div>
 
@@ -837,6 +839,7 @@ footer {
         <div class="pub-year">2024</div>
         <div class="pub-content">
           <span class="pub-badge conf">Conference · ICEIC 2024</span>
+          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
           <div class="pub-title">Gastrointestinal Insights Redefined: An Integrated Hybrid Model Fusing Vision Transformer and Transfer Learning</div>
           <div class="pub-venue">6th International Conference on Electrical Engineering and Information Communication Technology</div>
         </div>
@@ -848,7 +851,7 @@ footer {
           <span class="pub-badge q1">Q1 · IEEE JBHI</span>
           <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
           <div class="pub-title">Vision Transformers, Ensemble Model, and Transfer Learning Leveraging Explainable AI for Brain Tumor Detection and Classification</div>
-          <div class="pub-venue">IEEE Journal of Biomedical and Health Informatics 28(3), 1261–1272 · IF 6.8 · <strong style="color:var(--teal)">262 citations</strong></div>
+          <div class="pub-venue">IEEE Journal of Biomedical and Health Informatics 28(3), 1261–1272 · IF 6.8</div>
         </div>
       </div>
 
@@ -856,8 +859,9 @@ footer {
         <div class="pub-year">2023</div>
         <div class="pub-content">
           <span class="pub-badge q1">Q1 · MDPI Sensors</span>
+          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
           <div class="pub-title">Aggregating Different Scales of Attention on Feature Variants for Tomato Leaf Disease Diagnosis from Image Data: A Transformer Driven Study</div>
-          <div class="pub-venue">Sensors 23(7), 3751 · IF 3.5 · 55 citations</div>
+          <div class="pub-venue">Sensors 23(7), 3751 · IF 3.5</div>
         </div>
       </div>
 
@@ -875,7 +879,7 @@ footer {
         <div class="pub-content">
           <span class="pub-badge conf">Conference · IEEE ICCIT 2022</span>
           <div class="pub-title">Surveillance in Maritime Scenario using Deep Learning and Swarm Intelligence</div>
-          <div class="pub-venue">25th International Conference on Computer and Information Technology · 7 citations</div>
+          <div class="pub-venue">25th International Conference on Computer and Information Technology</div>
         </div>
       </div>
 
@@ -910,6 +914,7 @@ footer {
         <div class="pub-year">2020</div>
         <div class="pub-content">
           <span class="pub-badge conf">Conference · ICCTAA 2020</span>
+          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
           <div class="pub-title">Pneumonia Detection by Analyzing X-Ray Images using MobileNet, ResNet Architecture and Long Short Term Memory</div>
           <div class="pub-venue">30th International Conference on Computer Theory and Applications</div>
         </div>
