@@ -60,6 +60,104 @@ a, button, [role="button"] { cursor: none; pointer-events: auto; }
   transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), width 0.2s, height 0.2s;
 }
 
+/* ── Light theme ── */
+body.light {
+  --bg:        #F0EDE6;
+  --bg2:       #E8E4DC;
+  --bg3:       #DDD9D0;
+  --border:    rgba(0,0,0,0.09);
+  --border2:   rgba(0,140,110,0.3);
+  --teal:      #007A62;
+  --teal2:     #009478;
+  --amber:     #B87000;
+  --text:      #1A1A18;
+  --muted:     #4A4840;
+  --muted2:    #8A8780;
+}
+body.light .nav-logo { color: var(--teal); }
+body.light .hero-bg-num { color: rgba(0,0,0,0.04); }
+body.light .mesh {
+  background:
+    radial-gradient(ellipse 600px 400px at 80% 20%, rgba(0,140,110,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 600px at 10% 80%, rgba(80,60,200,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 300px 300px at 50% 50%, rgba(180,120,0,0.03) 0%, transparent 70%);
+}
+body.light .stats-bar  { background: var(--bg3); }
+body.light .pub-badge.q1   { background: rgba(0,122,98,0.1); color: var(--teal); border-color: rgba(0,122,98,0.25); }
+body.light .pub-badge.conf { background: rgba(100,60,200,0.08); color: #6040CC; border-color: rgba(100,60,200,0.2); }
+body.light .pub-badge.first{ background: rgba(0,0,0,0.05); color: var(--text); border-color: var(--border); }
+body.light .tag { color: var(--muted); border-color: var(--border); }
+body.light .tag:hover { border-color: var(--teal); color: var(--teal); }
+body.light .skill-pill { background: var(--bg); color: var(--text); border-color: var(--border); }
+body.light .skill-pill:hover { border-color: var(--teal); color: var(--teal); }
+body.light .proj-chip { color: var(--muted); border-color: var(--border); }
+body.light .book { background: var(--bg); }
+body.light .toast { background: var(--teal); color: white; }
+body.light .cursor { background: var(--teal); }
+body.light .cursor-ring { border-color: rgba(0,122,98,0.4); }
+body.light .scroll-line { background: linear-gradient(to right, var(--teal), transparent); }
+body.light .btn-primary { background: var(--teal); color: white; }
+body.light .btn-primary:hover { background: var(--teal2); }
+body.light .btn-outline { color: var(--teal); border-color: rgba(0,122,98,0.3); }
+body.light .nav-cta { color: var(--teal); border-color: rgba(0,122,98,0.3); }
+body.light .nav-cta:hover { background: var(--teal); color: white; }
+body.light .working-dot { background: var(--teal); }
+body.light .working-strip { background: var(--bg3); border-color: var(--border); }
+
+/* ── Theme toggle ── */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 1rem;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: none;
+  transition: border-color 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--teal); color: var(--teal); }
+
+/* ── Currently Working On strip ── */
+.working-strip {
+  position: relative; z-index: 1;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  padding: 0.7rem 4rem;
+  display: flex; align-items: center; gap: 1rem;
+  overflow: hidden;
+}
+.working-label {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  font-weight: 500; color: var(--teal);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  white-space: nowrap; flex-shrink: 0;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.working-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+.working-divider {
+  width: 1px; height: 18px;
+  background: var(--border); flex-shrink: 0;
+}
+.working-text {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--muted); letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.working-text em { color: var(--text); font-style: normal; font-weight: 500; }
+@media (max-width: 900px) {
+  .working-strip { padding: 0.7rem 1.5rem; }
+  .working-text  { font-size: 0.62rem; }
+}
+
 /* ── Noise overlay ── */
 body::before {
   content: '';
@@ -447,6 +545,68 @@ section { position: relative; z-index: 1; }
 }
 .skill-pill:hover { border-color: var(--teal); color: var(--teal); }
 
+/* ── Hobbies ── */
+#hobbies { background: var(--bg2); }
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.hobby-card {
+  background: var(--bg2);
+  padding: 2rem;
+  transition: background 0.2s;
+}
+.hobby-card:hover { background: var(--bg3); }
+.hobby-card--wide { background: var(--bg2); }
+.hobby-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+.hobby-title {
+  font-size: 1rem; font-weight: 600;
+  color: var(--text); margin-bottom: 0.6rem;
+}
+.hobby-body {
+  font-size: 0.9rem; color: var(--muted); line-height: 1.7;
+}
+.book-shelf {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+.book {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  transition: border-color 0.2s;
+}
+.book:hover { border-color: var(--teal); }
+.book-status {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.18rem 0.6rem;
+  display: inline-block; margin-bottom: 0.6rem;
+}
+.book-status--done  { background: rgba(0,212,170,0.12); color: var(--teal); border: 1px solid rgba(0,212,170,0.25); }
+.book-status--reading { background: rgba(245,166,35,0.1); color: var(--amber); border: 1px solid rgba(245,166,35,0.25); }
+.book-title {
+  font-size: 0.9rem; font-weight: 600;
+  color: var(--text); margin-bottom: 0.2rem; line-height: 1.3;
+}
+.book-author {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  color: var(--teal); margin-bottom: 0.6rem;
+}
+.book-desc {
+  font-size: 0.8rem; color: var(--muted); line-height: 1.6;
+}
+@media (max-width: 900px) {
+  .hobbies-grid { grid-template-columns: 1fr; }
+  .book-shelf { grid-template-columns: 1fr; }
+}
+
 /* ── Awards ── */
 #awards { background: var(--bg); }
 .awards-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--border); border: 1px solid var(--border); }
@@ -577,10 +737,26 @@ footer {
     <li><a href="#projects">Projects</a></li>
     <li><a href="#publications">Papers</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#hobbies">Hobbies</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get in touch →</a>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <a href="#contact" class="nav-cta">Get in touch →</a>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">☀</button>
+  </div>
 </nav>
+
+<!-- Currently Working On -->
+<div class="working-strip">
+  <div class="working-label">
+    <span class="working-dot"></span>
+    Currently Working On
+  </div>
+  <div class="working-divider"></div>
+  <div class="working-text">
+    <em>Real-time object detection</em> using Camera · LiDAR · GPS &nbsp;—&nbsp; Living Innovation Lab, GMU
+  </div>
+</div>
 
 <!-- Hero -->
 <section id="hero">
@@ -1062,6 +1238,51 @@ footer {
   </div>
 </section>
 
+<!-- Hobbies -->
+<section id="hobbies">
+  <div class="sec-wrap">
+    <div class="sec-label">07 — Beyond Research</div>
+    <h2 class="sec-title reveal">When I'm Not<br>in the Lab</h2>
+    <div class="hobbies-grid reveal">
+
+      <!-- Bass -->
+      <div class="hobby-card">
+        <div class="hobby-icon">🎸</div>
+        <div class="hobby-title">Learning Bass Guitar</div>
+        <div class="hobby-body">Currently picking up bass — drawn to the low-end groove that holds everything together. The kind of instrument that rewards patience, which is good practice for a researcher.</div>
+      </div>
+
+      <!-- Reading -->
+      <div class="hobby-card hobby-card--wide">
+        <div class="hobby-icon">📖</div>
+        <div class="hobby-title">Reading</div>
+        <div class="hobby-body">Across fiction, literary fiction, and poetry — a deliberate counterweight to technical work.</div>
+        <div class="book-shelf">
+          <div class="book">
+            <div class="book-status book-status--done">Read</div>
+            <div class="book-title">Opekkha</div>
+            <div class="book-author">Humayun Ahmed</div>
+            <div class="book-desc">A quiet, emotionally precise Bangladeshi novel — Ahmed's signature blend of longing, silence, and everyday human ache.</div>
+          </div>
+          <div class="book">
+            <div class="book-status book-status--reading">Reading</div>
+            <div class="book-title">Secrets of Secrets</div>
+            <div class="book-author">Dan Brown</div>
+            <div class="book-desc">Fast-moving thriller built on hidden knowledge, symbolic puzzles, and the tension between institutional power and individual truth.</div>
+          </div>
+          <div class="book">
+            <div class="book-status book-status--reading">Reading</div>
+            <div class="book-title">A Boy's Will &amp; North of Boston</div>
+            <div class="book-author">Robert Frost</div>
+            <div class="book-desc">Two early Frost collections — rural New England rendered in plain language with extraordinary depth. The Road Not Taken lives here.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- Contact -->
 <section id="contact">
   <div class="sec-wrap">
@@ -1080,7 +1301,7 @@ footer {
         <span class="contact-link-icon">📚</span>
         <span class="contact-link-label">Scholar</span>
       </a>
-      <a href="https://linkedin.com" target="_blank" class="contact-link">
+      <a href="https://www.linkedin.com/in/shahriar-hossain-a78258135/" target="_blank" class="contact-link">
         <span class="contact-link-icon">🔗</span>
         <span class="contact-link-label">LinkedIn</span>
       </a>
@@ -1098,6 +1319,15 @@ footer {
 <div class="toast" id="toast">mail copied</div>
 
 <script>
+// ── Theme toggle ──
+const themeBtn = document.getElementById('themeToggle');
+const saved = localStorage.getItem('theme');
+if (saved === 'light') { document.body.classList.add('light'); themeBtn.textContent = '☽'; }
+themeBtn.addEventListener('click', () => {
+  const isLight = document.body.classList.toggle('light');
+  themeBtn.textContent = isLight ? '☽' : '☀';
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
 // ── Copy email to clipboard ──
 function copyEmail() {
   const email = 'shossa4@gmu.edu';
