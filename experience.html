@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Publications — Shahriar Hossain</title>
+<title>Experience — Shahriar Hossain</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -831,9 +831,9 @@ footer {
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="experience.html">Experience</a></li>
+    <li><a href="experience.html"style="color:var(--teal)">Experience</a></li>
     <li><a href="projects.html">Projects</a></li>
-    <li><a href="publications.html"style="color:var(--teal)">Publications</a></li>
+    <li><a href="publications.html">Publications</a></li>
     <li><a href="skills.html">Skills</a></li>
     <li><a href="awards.html">Awards</a></li>
     <li><a href="hobbies.html">Hobbies</a></li>
@@ -845,166 +845,74 @@ footer {
   </div>
 </nav>
 
-<style>
-.pub-filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem;}
-.filter-btn{font-family:var(--font-mono);font-size:.7rem;padding:.35rem 1rem;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:none;transition:all .2s;}
-.filter-btn.active,.filter-btn:hover{border-color:var(--teal);color:var(--teal);background:rgba(0,212,170,.07);}
-.pub-count{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);margin-top:.75rem;}
-.pub-count span{color:var(--teal);font-weight:500;}
-.hidden{display:none!important;}
-</style>
 <div class="page-main">
   <div class="page-hero">
     <a href="index.html" class="back-link">← Home</a>
-    <h1>All <em>Publications</em></h1>
-    <p>14 peer-reviewed works spanning robotics, embodied AI, computer vision, and medical imaging — including 5 Q1 journal papers and a first-author workshop at CoRL 2024.</p>
-    <div class="pub-filter-bar">
-      <button class="filter-btn active" data-filter="all">All (14)</button>
-      <button class="filter-btn" data-filter="first">First Author (7)</button>
-      <button class="filter-btn" data-filter="q1">Q1 Journals (5)</button>
-      <button class="filter-btn" data-filter="robotics">Robotics / AI</button>
-      <button class="filter-btn" data-filter="vision">Computer Vision</button>
-      <button class="filter-btn" data-filter="medical">Medical Imaging</button>
-    </div>
-    <div class="pub-count">Showing <span id="visCount">14</span> of 14 publications</div>
+    <h1>Professional <em>Experience</em></h1>
+    <p>Research and industry roles spanning robotics, embedded AI, and computer vision — from Jetson Nano deployments to CoRL publications.</p>
   </div>
-  <section class="pub-full-list">
+  <section id="experience">
   <div class="sec-wrap">
-    <div class="pub-list">
-
-      <div class="pub-item reveal" data-tags="q1 vision">
-        <div class="pub-year">2025</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · PLoS ONE</span>
-          <div class="pub-title">Optimizing Network Bandwidth Slicing Identification: NADAM-Enhanced CNN and VAE Data Preprocessing for Enhanced Interpretability</div>
-          <div class="pub-venue">PLoS ONE 20(10) · IF 2.6</div>
+    <div class="sec-label">02 — Experience</div>
+    <h2 class="sec-title reveal">Where I've<br>Built Things</h2>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-date">May 2024<br>→ Present</div>
+        <div>
+          <div class="exp-role">Graduate Research Assistant</div>
+          <div class="exp-org">Living Innovation Lab, George Mason University</div>
+          <ul class="exp-bullets">
+            <li>Building real-time object detection pipeline fusing RGB-T camera, LiDAR, and GNSS for autonomous perception deployed on edge servers</li>
+            <li>Developed real-time 3D reconstruction and multi-modal sensor fusion pipeline (RGB-D + LiDAR) for change detection of warehouse mobile robots and robot arms</li>
+            <li>Built ROS2 pipelines supporting SLAM, depth estimation, localization, and neural 3D representation generation optimized for embedded platforms</li>
+            <li>Built spatio-temporal vision model performing simultaneous 6DOF end-effector pose estimation, action-state classification, and geometric task-feasibility assessment</li>
+            <li>Generated synthetic point clouds and diffusion-based 3D representations for scene understanding and neural 3D perception.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">May 2024<br>→ Jul 2024</div>
+        <div>
+          <div class="exp-role">Graduate Research Assistant</div>
+          <div class="exp-org">RAIL Group, George Mason University</div>
+          <ul class="exp-bullets">
+            <li>Developed and optimized task planning and autonomous decision-making algorithms using LLMs for robotics — led to first-author CoRL 2024 workshop publication</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Nov 2021<br>→ Jul 2023</div>
+        <div>
+          <div class="exp-role">Graduate Research Assistant</div>
+          <div class="exp-org">BRAC University</div>
+          <ul class="exp-bullets">
+            <li>Conducted ML/DL experiments on image/video datasets implementing 2D/3D detection, segmentation, and classification pipelines</li>
+            <li>Published 6 peer-reviewed papers (3 Q1 journals) in image classification and object detection</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Sep 2021<br>→ Nov 2021</div>
+        <div>
+          <div class="exp-role">Junior Machine Learning Engineer</div>
+          <div class="exp-org">Omdena</div>
+          <ul class="exp-bullets">
+            <li>Built and fine-tuned ML models including AdaBoost and XGBoost to detect forest wood fires through sensor data analysis.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="pub-item reveal" data-tags="first q2 vision">
-        <div class="pub-year">2025</div>
-        <div class="pub-content">
-          <span class="pub-badge q2">Q2 · Baghdad Science Journal</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Medicinal Plant Leaf Classification using Deep Learning and Vision Transformers</div>
-          <div class="pub-venue">Baghdad Science Journal 22(3)</div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Mar 2021<br>→ Jun 2021</div>
+        <div>
+          <div class="exp-role">Embedded ML &amp; Computer Vision Intern</div>
+          <div class="exp-org">Arthor Limited</div>
+          <ul class="exp-bullets">
+            <li>Implemented object detection and multi-sensor fusion on Jetson Nano for low-latency perception and control</li>
+            <li>Built end-to-end data collection and processing pipelines for vehicle sensors enabling real-time navigation and decision-making</li>
+          </ul>
         </div>
       </div>
-
-      <div class="pub-item reveal" data-tags="first robotics">
-        <div class="pub-year">2024</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Workshop · CoRL 2024</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Enhancing Object Search by Augmenting Planning with Predictions from Large Language Models</div>
-          <div class="pub-venue">2nd LEAP Workshop on Learning Effective Abstractions for Planning · CoRL 2024</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="q1 vision">
-        <div class="pub-year">2024</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · MDPI AI</span>
-          <div class="pub-title">ECARRNet: An Efficient LSTM-Based Ensembled Deep Neural Network Architecture for Railway Fault Detection</div>
-          <div class="pub-venue">AI 5(2), 482–503 · IF 5.0</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="q1 medical">
-        <div class="pub-year">2024</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · IEEE Access</span>
-          <div class="pub-title">Semantic Segmentation on Panoramic Dental X-Ray Images using U-Net Architectures</div>
-          <div class="pub-venue">IEEE Access 12, 44598–44612 · IF 3.6</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="first vision medical">
-        <div class="pub-year">2024</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · ICEIC 2024</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Gastrointestinal Insights Redefined: An Integrated Hybrid Model Fusing Vision Transformer and Transfer Learning</div>
-          <div class="pub-venue">6th International Conference on Electrical Engineering and Information Communication Technology</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="first q1 medical">
-        <div class="pub-year">2023</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · IEEE JBHI</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Vision Transformers, Ensemble Model, and Transfer Learning Leveraging Explainable AI for Brain Tumor Detection and Classification</div>
-          <div class="pub-venue">IEEE Journal of Biomedical and Health Informatics 28(3), 1261–1272 · IF 6.8</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="first q1 vision">
-        <div class="pub-year">2023</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · MDPI Sensors</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Aggregating Different Scales of Attention on Feature Variants for Tomato Leaf Disease Diagnosis from Image Data: A Transformer Driven Study</div>
-          <div class="pub-venue">Sensors 23(7), 3751 · IF 3.5</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="medical vision">
-        <div class="pub-year">2023</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · IEEE ISMI 2023</span>
-          <div class="pub-title">Real-Time Mastitis Detection in Livestock using Deep Learning and Machine Learning Leveraging Edge Devices</div>
-          <div class="pub-venue">IEEE 17th International Symposium on Medical Information and Communication Technology</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="vision">
-        <div class="pub-year">2022</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · IEEE ICCIT 2022</span>
-          <div class="pub-title">Surveillance in Maritime Scenario using Deep Learning and Swarm Intelligence</div>
-          <div class="pub-venue">25th International Conference on Computer and Information Technology</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="vision">
-        <div class="pub-year">2022</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · IEEE ICCIT 2022</span>
-          <div class="pub-title">A Novel Traffic Simulator for Evaluating Complex SIoT-Based Algorithms in Typical Road Traffic Scenarios</div>
-          <div class="pub-venue">25th International Conference on Computer and Information Technology</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="first medical">
-        <div class="pub-year">2021</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · ICIRCA 2021</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Brain Tumor Prediction by Analyzing MRI using Deep Learning Architectures</div>
-          <div class="pub-venue">3rd International Conference on Inventive Research in Computing Applications</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="vision">
-        <div class="pub-year">2021</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · ICICT 2021</span>
-          <div class="pub-title">RansomListener: Ransom Call Sound Investigation using LSTM and CNN Architectures</div>
-          <div class="pub-venue">6th International Conference on Inventive Computation Technologies</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="first medical">
-        <div class="pub-year">2020</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · ICCTAA 2020</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Pneumonia Detection by Analyzing X-Ray Images using MobileNet, ResNet Architecture and Long Short Term Memory</div>
-          <div class="pub-venue">30th International Conference on Computer Theory and Applications</div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1037,11 +945,6 @@ revealEls.forEach(el=>io.observe(el));
 document.getElementById('footer-year').textContent='© '+new Date().getFullYear();
 const currentPage=window.location.pathname.split('/').pop()||'index.html';
 document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===currentPage){a.style.color='var(--teal)';a.style.borderBottom='1px solid var(--teal)';a.style.paddingBottom='2px';}});
-
-const filterBtns=document.querySelectorAll('.filter-btn');
-const pubItems=document.querySelectorAll('.pub-item');
-const visCount=document.getElementById('visCount');
-filterBtns.forEach(btn=>{btn.addEventListener('click',()=>{filterBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');const filter=btn.dataset.filter;let count=0;pubItems.forEach(item=>{const tags=item.dataset.tags||'';const show=filter==='all'||tags.includes(filter);item.classList.toggle('hidden',!show);if(show)count++;});visCount.textContent=count;});});
 </script>
 <script data-goatcounter="https://shahriar-hossain.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

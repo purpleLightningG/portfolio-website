@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Publications — Shahriar Hossain</title>
+<title>Projects — Shahriar Hossain</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -832,8 +832,8 @@ footer {
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="experience.html">Experience</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="publications.html"style="color:var(--teal)">Publications</a></li>
+    <li><a href="projects.html"style="color:var(--teal)">Projects</a></li>
+    <li><a href="publications.html">Publications</a></li>
     <li><a href="skills.html">Skills</a></li>
     <li><a href="awards.html">Awards</a></li>
     <li><a href="hobbies.html">Hobbies</a></li>
@@ -845,166 +845,93 @@ footer {
   </div>
 </nav>
 
-<style>
-.pub-filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem;}
-.filter-btn{font-family:var(--font-mono);font-size:.7rem;padding:.35rem 1rem;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:none;transition:all .2s;}
-.filter-btn.active,.filter-btn:hover{border-color:var(--teal);color:var(--teal);background:rgba(0,212,170,.07);}
-.pub-count{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);margin-top:.75rem;}
-.pub-count span{color:var(--teal);font-weight:500;}
-.hidden{display:none!important;}
-</style>
 <div class="page-main">
   <div class="page-hero">
     <a href="index.html" class="back-link">← Home</a>
-    <h1>All <em>Publications</em></h1>
-    <p>14 peer-reviewed works spanning robotics, embodied AI, computer vision, and medical imaging — including 5 Q1 journal papers and a first-author workshop at CoRL 2024.</p>
-    <div class="pub-filter-bar">
-      <button class="filter-btn active" data-filter="all">All (14)</button>
-      <button class="filter-btn" data-filter="first">First Author (7)</button>
-      <button class="filter-btn" data-filter="q1">Q1 Journals (5)</button>
-      <button class="filter-btn" data-filter="robotics">Robotics / AI</button>
-      <button class="filter-btn" data-filter="vision">Computer Vision</button>
-      <button class="filter-btn" data-filter="medical">Medical Imaging</button>
-    </div>
-    <div class="pub-count">Showing <span id="visCount">14</span> of 14 publications</div>
+    <h1>Selected <em>Projects</em></h1>
+    <p>Open-source work in 3D perception, sensor fusion, neural 3D representations, and robot planning — all with public repos and documentation.</p>
   </div>
-  <section class="pub-full-list">
+  <section id="projects">
   <div class="sec-wrap">
-    <div class="pub-list">
-
-      <div class="pub-item reveal" data-tags="q1 vision">
-        <div class="pub-year">2025</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · PLoS ONE</span>
-          <div class="pub-title">Optimizing Network Bandwidth Slicing Identification: NADAM-Enhanced CNN and VAE Data Preprocessing for Enhanced Interpretability</div>
-          <div class="pub-venue">PLoS ONE 20(10) · IF 2.6</div>
+    <div class="sec-label">03 — Projects</div>
+    <h2 class="sec-title reveal">Selected<br>Builds</h2>
+    <div class="projects-grid">
+      <div class="proj-card featured reveal">
+        <div class="proj-tag">📡 Featured · 22 GitHub Stars</div>
+        <div class="proj-title">LiDAR–Camera Extrinsic Calibration Pipeline</div>
+        <div class="proj-desc">Robust, reproducible LiDAR–camera extrinsic calibration using checkerboard and AprilTag targets. Implements reprojection error minimization, point-to-pixel alignment validation, and utilities for saving/consuming [R|t] transforms. One of the most starred robotics calibration repos for individual researchers.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">Python</span>
+          <span class="proj-chip">ROS2</span>
+          <span class="proj-chip">OpenCV</span>
+          <span class="proj-chip">Open3D</span>
+          <span class="proj-chip">NumPy</span>
+          <span class="proj-chip" style="margin-left:auto;color:var(--amber);">★ 22</span>
         </div>
+        <a href="https://github.com/purpleLightningG/LiDAR-Camera-Calibration" target="_blank" class="proj-link">View on GitHub →</a>
       </div>
-
-      <div class="pub-item reveal" data-tags="first q2 vision">
-        <div class="pub-year">2025</div>
-        <div class="pub-content">
-          <span class="pub-badge q2">Q2 · Baghdad Science Journal</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Medicinal Plant Leaf Classification using Deep Learning and Vision Transformers</div>
-          <div class="pub-venue">Baghdad Science Journal 22(3)</div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🔷 3D Deep Learning</div>
+        <div class="proj-title">Point Cloud Completion (pcdCompletion)</div>
+        <div class="proj-desc">Custom conditional DDPM trained on KITTI-style data for depth completion. Implements a linear beta schedule (1000 timesteps, Ho et al. 2020) with a conditioning network that takes semantic labels and plane distance as priors.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">PyTorch</span>
+          <span class="proj-chip">DDPM</span>
+          <span class="proj-chip">KITTI</span>
+          <span class="proj-chip">Point Clouds</span>
         </div>
+        <a href="https://github.com/purpleLightningG/pcdCompletion" target="_blank" class="proj-link">View on GitHub →</a>
       </div>
-
-      <div class="pub-item reveal" data-tags="first robotics">
-        <div class="pub-year">2024</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Workshop · CoRL 2024</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Enhancing Object Search by Augmenting Planning with Predictions from Large Language Models</div>
-          <div class="pub-venue">2nd LEAP Workshop on Learning Effective Abstractions for Planning · CoRL 2024</div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🧠 Weak Supervision</div>
+        <div class="proj-title">PointNet++ with Weak Labels</div>
+        <div class="proj-desc">PointNet baseline on first-hand LiDAR .pcd data. Generates weak multi-label targets via DBSCAN and size heuristics, converts to .npy, and trains a reproducible PyTorch model with full normalization pipeline.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">PyTorch</span>
+          <span class="proj-chip">PointNet++</span>
+          <span class="proj-chip">DBSCAN</span>
+          <span class="proj-chip">LiDAR</span>
         </div>
+        <a href="https://github.com/purpleLightningG/pointnet-weaklabels-pcd" target="_blank" class="proj-link">View on GitHub →</a>
       </div>
-
-      <div class="pub-item reveal" data-tags="q1 vision">
-        <div class="pub-year">2024</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · MDPI AI</span>
-          <div class="pub-title">ECARRNet: An Efficient LSTM-Based Ensembled Deep Neural Network Architecture for Railway Fault Detection</div>
-          <div class="pub-venue">AI 5(2), 482–503 · IF 5.0</div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🌐 Neural 3D</div>
+        <div class="proj-title">NeRF + Gaussian Splatting</div>
+        <div class="proj-desc">Neural Radiance Field implementation for novel view synthesis combined with 3D Gaussian Splatting for real-time rendering. Applied to scene understanding and neural 3D representation pipelines in robotic environments.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">PyTorch</span>
+          <span class="proj-chip">NeRF</span>
+          <span class="proj-chip">3DGS</span>
+          <span class="proj-chip">Novel View Synthesis</span>
         </div>
+        <a href="https://github.com/purpleLightningG/NeRF-GaussianSplatting" target="_blank" class="proj-link">View on GitHub →</a>
       </div>
-
-      <div class="pub-item reveal" data-tags="q1 medical">
-        <div class="pub-year">2024</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · IEEE Access</span>
-          <div class="pub-title">Semantic Segmentation on Panoramic Dental X-Ray Images using U-Net Architectures</div>
-          <div class="pub-venue">IEEE Access 12, 44598–44612 · IF 3.6</div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🤖 Foundation Models</div>
+        <div class="proj-title">SAM2 Fine-Tuning for Robotic Perception</div>
+        <div class="proj-desc">Fine-tuned SAM2 with LoRA/adapter layers for multi-modal 2D/3D perception tasks. Includes GroundingDINO + SAM2 pipeline for text-conditioned mask generation, benchmarked under domain shift (lighting, weather, camera intrinsics).</div>
+        <div class="proj-meta">
+          <span class="proj-chip">SAM2</span>
+          <span class="proj-chip">LoRA</span>
+          <span class="proj-chip">GroundingDINO</span>
+          <span class="proj-chip">HuggingFace</span>
+          <span class="proj-chip">W&amp;B</span>
         </div>
+        <a href="https://github.com/purpleLightningG/SAM2-robotic-perception" target="_blank" class="proj-link">View on GitHub →</a>
       </div>
-
-      <div class="pub-item reveal" data-tags="first vision medical">
-        <div class="pub-year">2024</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · ICEIC 2024</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Gastrointestinal Insights Redefined: An Integrated Hybrid Model Fusing Vision Transformer and Transfer Learning</div>
-          <div class="pub-venue">6th International Conference on Electrical Engineering and Information Communication Technology</div>
+      <div class="proj-card reveal">
+        <div class="proj-tag">🗺️ Robot Planning</div>
+        <div class="proj-title">ROS2 Motion Planning Suite</div>
+        <div class="proj-desc">A*, D* Lite, and RRT* planning algorithms implemented in ROS2, integrated with LiDAR-based real-time object detection for autonomous navigation. Includes RGB and GNSS sensor integration for full outdoor localization.</div>
+        <div class="proj-meta">
+          <span class="proj-chip">ROS2</span>
+          <span class="proj-chip">A*</span>
+          <span class="proj-chip">RRT*</span>
+          <span class="proj-chip">LiDAR</span>
+          <span class="proj-chip">GNSS</span>
         </div>
+        <a href="https://github.com/purpleLightningG/ros2-motion-planning" target="_blank" class="proj-link">View on GitHub →</a>
       </div>
-
-      <div class="pub-item reveal" data-tags="first q1 medical">
-        <div class="pub-year">2023</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · IEEE JBHI</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Vision Transformers, Ensemble Model, and Transfer Learning Leveraging Explainable AI for Brain Tumor Detection and Classification</div>
-          <div class="pub-venue">IEEE Journal of Biomedical and Health Informatics 28(3), 1261–1272 · IF 6.8</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="first q1 vision">
-        <div class="pub-year">2023</div>
-        <div class="pub-content">
-          <span class="pub-badge q1">Q1 · MDPI Sensors</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Aggregating Different Scales of Attention on Feature Variants for Tomato Leaf Disease Diagnosis from Image Data: A Transformer Driven Study</div>
-          <div class="pub-venue">Sensors 23(7), 3751 · IF 3.5</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="medical vision">
-        <div class="pub-year">2023</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · IEEE ISMI 2023</span>
-          <div class="pub-title">Real-Time Mastitis Detection in Livestock using Deep Learning and Machine Learning Leveraging Edge Devices</div>
-          <div class="pub-venue">IEEE 17th International Symposium on Medical Information and Communication Technology</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="vision">
-        <div class="pub-year">2022</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · IEEE ICCIT 2022</span>
-          <div class="pub-title">Surveillance in Maritime Scenario using Deep Learning and Swarm Intelligence</div>
-          <div class="pub-venue">25th International Conference on Computer and Information Technology</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="vision">
-        <div class="pub-year">2022</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · IEEE ICCIT 2022</span>
-          <div class="pub-title">A Novel Traffic Simulator for Evaluating Complex SIoT-Based Algorithms in Typical Road Traffic Scenarios</div>
-          <div class="pub-venue">25th International Conference on Computer and Information Technology</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="first medical">
-        <div class="pub-year">2021</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · ICIRCA 2021</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Brain Tumor Prediction by Analyzing MRI using Deep Learning Architectures</div>
-          <div class="pub-venue">3rd International Conference on Inventive Research in Computing Applications</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="vision">
-        <div class="pub-year">2021</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · ICICT 2021</span>
-          <div class="pub-title">RansomListener: Ransom Call Sound Investigation using LSTM and CNN Architectures</div>
-          <div class="pub-venue">6th International Conference on Inventive Computation Technologies</div>
-        </div>
-      </div>
-
-      <div class="pub-item reveal" data-tags="first medical">
-        <div class="pub-year">2020</div>
-        <div class="pub-content">
-          <span class="pub-badge conf">Conference · ICCTAA 2020</span>
-          <span class="pub-badge first" style="margin-left:0.4rem;">First Author</span>
-          <div class="pub-title">Pneumonia Detection by Analyzing X-Ray Images using MobileNet, ResNet Architecture and Long Short Term Memory</div>
-          <div class="pub-venue">30th International Conference on Computer Theory and Applications</div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1037,11 +964,6 @@ revealEls.forEach(el=>io.observe(el));
 document.getElementById('footer-year').textContent='© '+new Date().getFullYear();
 const currentPage=window.location.pathname.split('/').pop()||'index.html';
 document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===currentPage){a.style.color='var(--teal)';a.style.borderBottom='1px solid var(--teal)';a.style.paddingBottom='2px';}});
-
-const filterBtns=document.querySelectorAll('.filter-btn');
-const pubItems=document.querySelectorAll('.pub-item');
-const visCount=document.getElementById('visCount');
-filterBtns.forEach(btn=>{btn.addEventListener('click',()=>{filterBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');const filter=btn.dataset.filter;let count=0;pubItems.forEach(item=>{const tags=item.dataset.tags||'';const show=filter==='all'||tags.includes(filter);item.classList.toggle('hidden',!show);if(show)count++;});visCount.textContent=count;});});
 </script>
 <script data-goatcounter="https://shahriar-hossain.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
