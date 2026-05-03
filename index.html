@@ -812,6 +812,17 @@ footer {
   .hero-bg-num { display: none; }
 }
 
+/* ── Research Statement ── */
+.research-statement { display: flex; flex-direction: column; gap: 0; }
+.rs-block { display: grid; grid-template-columns: 48px 1fr; gap: 0 1.5rem; padding: 2rem 0; border-bottom: 0.5px solid var(--border); align-items: start; }
+.rs-block:last-child { border-bottom: none; }
+.rs-icon { font-size: 1.4rem; padding-top: 0.2rem; }
+.rs-head { font-size: 0.72rem; font-weight: 600; color: var(--teal); font-family: var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+.rs-body { font-size: 1.05rem; color: var(--muted); line-height: 1.8; margin: 0; }
+.rs-body strong { color: var(--text); font-weight: 500; }
+.rs-body em { color: var(--teal); font-style: normal; }
+@media (max-width: 900px) { .rs-block { grid-template-columns: 36px 1fr; gap: 0 1rem; } }
+
 .page-main { padding-top: 80px; min-height: 100vh; position: relative; z-index: 1; }
 .page-hero { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 5rem 4rem 3rem; }
 .page-hero .back-link { font-family:var(--font-mono); font-size:0.7rem; color:var(--muted); text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1.25rem; transition:color 0.2s; }
@@ -830,7 +841,6 @@ footer {
   <a href="index.html" class="nav-logo">SH_PORTFOLIO</a>
   <ul class="nav-links">
     <li><a href="index.html"style="color:var(--teal)">Home</a></li>
-    <li><a href="about.html">About</a></li>
     <li><a href="experience.html">Experience</a></li>
     <li><a href="projects.html">Projects</a></li>
     <li><a href="publications.html">Publications</a></li>
@@ -875,8 +885,8 @@ footer {
     <span class="tag">Edge AI</span>
   </div>
   <div class="hero-ctas">
-    <a href="#projects" class="btn-primary">View Projects</a>
-    <a href="#contact" class="btn-outline" onclick="showClickHint()">Hire Me</a>
+    <a href="projects.html" class="btn-primary">View Projects</a>
+    <a href="contact.html" class="btn-outline">Hire Me</a>
   </div>
   <div class="scroll-hint">
     <span class="scroll-line"></span>
@@ -916,6 +926,88 @@ footer {
 </div>
 
 
+
+<!-- About -->
+<section id="about" style="background:var(--bg2);">
+  <div class="sec-wrap">
+    <div class="sec-label">01 — About</div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a <strong>PhD researcher in Computer Science at George Mason University</strong>, where I build perception and planning systems for autonomous robots. My work lives at the intersection of <em>3D computer vision</em>, <em>multi-sensor fusion</em>, and <em>embodied AI</em> — systems that not only see the world but reason about it.</p>
+        <p>At the Living Innovation Lab, I develop <strong>real-time pipelines fusing LiDAR, RGB-T cameras, and GNSS</strong> on edge hardware for warehouse robots — from change detection to 6DOF end-effector pose estimation for robotic arms. My research has been deployed on actual hardware, not just benchmarks.</p>
+        <p>My CoRL 2024 workshop paper introduced an <strong>LLM-augmented planning approach</strong> for robot object search — using language model predictions to bias navigation toward semantically plausible locations, reducing search steps significantly.</p>
+        <p>Before GMU, I published Q1 research at BRAC University and shipped embedded ML systems on <strong>Jetson Nano</strong> for real-time vehicle perception at Arthor Limited. I placed <strong>3rd and 4th at the University Rover Challenge</strong> — one of the few competitions where the robot has to survive in the real world, not just a simulation.</p>
+      </div>
+      <div class="about-sidebar reveal">
+        <div class="info-row">
+          <span class="info-label">Status</span>
+          <span class="info-val">PhD Candidate — CS, GMU</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Location</span>
+          <span class="info-val">Fairfax, Virginia, USA</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email</span>
+          <span class="info-val"><a href="mailto:shossa4@gmu.edu">shossa4@gmu.edu</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">GitHub</span>
+          <span class="info-val"><a href="https://github.com/purpleLightningG" target="_blank">purpleLightningG</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Google Scholar</span>
+          <span class="info-val"><a href="https://scholar.google.com/citations?user=UL1s_poAAAAJ" target="_blank">View Profile →</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Research Focus</span>
+          <span class="info-val">3D Perception · SLAM · Neural 3D Representations · Robot Planning</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Open To</span>
+          <span class="info-val">Summer 2026 Research Internships</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research Statement -->
+<section style="background:var(--bg);">
+  <div class="sec-wrap">
+    <div class="sec-label reveal">Research Statement</div>
+    <div class="research-statement reveal">
+      <div class="rs-block">
+        <div class="rs-icon">🔍</div>
+        <div class="rs-content">
+          <div class="rs-head">The Core Question</div>
+          <p class="rs-body">My research sits at the boundary between perception and action — how autonomous systems can build a reliable understanding of the physical world and use it to act. Most robots fail not because they can't plan, but because what they perceive is incomplete, noisy, or wrong. I build multi-modal perception pipelines that fuse <strong>LiDAR, RGB-T cameras, GNSS, and depth sensors</strong> into coherent 3D representations robust enough to support real decisions on real hardware.</p>
+        </div>
+      </div>
+      <div class="rs-block">
+        <div class="rs-icon">🏗️</div>
+        <div class="rs-content">
+          <div class="rs-head">Living Innovation Lab — GMU</div>
+          <p class="rs-body">At the Living Innovation Lab, I develop real-time systems that go beyond detection — reconstructing scenes in 3D, tracking change over time, estimating the state and feasibility of manipulation tasks, and localizing robots in dynamic environments. These systems are deployed on <strong>Jetson Nano edge hardware and RGB-T camera + LiDAR rigs</strong>, tested on physical warehouse robots and robot arms — not just in simulation.</p>
+        </div>
+      </div>
+      <div class="rs-block">
+        <div class="rs-icon">🤖</div>
+        <div class="rs-content">
+          <div class="rs-head">RAIL Group — GMU</div>
+          <p class="rs-body">Through the <strong>Robotic Anticipatory Intelligence & Learning (RAIL) Group</strong>, I work on the language-perception interface — how semantic knowledge encoded in large language models can bias a robot's spatial reasoning to make search and planning faster and more reliable. My <strong>CoRL 2024</strong> paper introduced LLM predictions as soft spatial priors for object search planning, reducing the need for exhaustive exploration in partially observed environments.</p>
+        </div>
+      </div>
+      <div class="rs-block">
+        <div class="rs-icon">🌐</div>
+        <div class="rs-content">
+          <div class="rs-head">Broader Agenda</div>
+          <p class="rs-body">I see perception and language as two sides of the same coin — together, they should allow robots to not just sense the world, but <em>understand it well enough to anticipate what matters next</em>. My current work on foundation model fine-tuning (SAM2, VLMs, GroundingDINO), neural 3D representations (NeRF, Gaussian Splatting), and diffusion-based point cloud generation reflects this agenda: building systems that are both geometrically precise and semantically aware.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <footer>
   <span class="footer-left">Shahriar Hossain · PhD Researcher · George Mason University</span>
   <span class="footer-right" id="footer-year"></span>
