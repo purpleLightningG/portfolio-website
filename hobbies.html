@@ -608,6 +608,51 @@ section { position: relative; z-index: 1; }
 }
 .book-text { flex: 1; min-width: 0; }
 
+/* ── Past reads panel ── */
+.past-reads-wrap {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.past-reads-label {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  font-weight: 600; color: var(--muted);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+.past-reads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+.author-group {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 1rem 1.1rem;
+  transition: border-color 0.2s;
+}
+.author-group:hover { border-color: var(--teal); }
+.author-name {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  font-weight: 600; color: var(--teal);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.past-book-list { display: flex; flex-direction: column; gap: 0.35rem; }
+.past-book {
+  font-size: 0.82rem; color: var(--muted);
+  line-height: 1.5; display: flex; justify-content: space-between; align-items: baseline;
+}
+.pub-yr {
+  font-family: var(--font-mono); font-size: 0.6rem;
+  color: var(--muted2); flex-shrink: 0; margin-left: 0.5rem;
+}
+@media (max-width: 900px) {
+  .past-reads-grid { grid-template-columns: 1fr 1fr; }
+}
+
 /* ── Hobbies ── */
 #hobbies { background: var(--bg2); }
 .hobbies-grid {
@@ -921,6 +966,70 @@ footer {
             </div>
           </div>
         </div>
+
+        <!-- Past Reads Panel -->
+        <div class="past-reads-wrap">
+          <div class="past-reads-label">📚 Previously Read</div>
+          <div class="past-reads-grid">
+
+            <div class="author-group">
+              <div class="author-name">Dan Brown</div>
+              <div class="past-book-list">
+                <span class="past-book">Digital Fortress <span class="pub-yr">'98</span></span>
+                <span class="past-book">Angels &amp; Demons <span class="pub-yr">'00</span></span>
+                <span class="past-book">Deception Point <span class="pub-yr">'01</span></span>
+                <span class="past-book">The Da Vinci Code <span class="pub-yr">'03</span></span>
+                <span class="past-book">The Lost Symbol <span class="pub-yr">'09</span></span>
+                <span class="past-book">Inferno <span class="pub-yr">'13</span></span>
+                <span class="past-book">Origin <span class="pub-yr">'17</span></span>
+              </div>
+            </div>
+
+            <div class="author-group">
+              <div class="author-name">Suzanne Collins</div>
+              <div class="past-book-list">
+                <span class="past-book">The Hunger Games <span class="pub-yr">'08</span></span>
+                <span class="past-book">Catching Fire <span class="pub-yr">'09</span></span>
+                <span class="past-book">Mockingjay <span class="pub-yr">'10</span></span>
+              </div>
+            </div>
+
+            <div class="author-group">
+              <div class="author-name">Sidney Sheldon</div>
+              <div class="past-book-list">
+                <span class="past-book">Rage of Angels</span>
+                <span class="past-book">Tell Me Your Dreams</span>
+              </div>
+            </div>
+
+            <div class="author-group">
+              <div class="author-name">Jonathan Swift</div>
+              <div class="past-book-list">
+                <span class="past-book">Gulliver's Travels</span>
+              </div>
+            </div>
+
+            <div class="author-group">
+              <div class="author-name">হুমায়ূন আহমেদ</div>
+              <div class="past-book-list">
+                <span class="past-book">দেয়াল</span>
+                <span class="past-book">মেঘ বলেছে যাব যাব</span>
+                <span class="past-book">দেবী</span>
+                <span class="past-book">তেতুল বনে জোছনা</span>
+                <span class="past-book">জীবনকৃষ্ণ মেমোরিয়াল হাইস্কুল</span>
+                <span class="past-book">অমানুষ</span>
+                <span class="past-book">আয়নাঘর</span>
+                <span class="past-book">আমি এবং আমরা</span>
+                <span class="past-book">বৃহন্নলা</span>
+                <span class="past-book">কৃষ্ণপক্ষ</span>
+                <span class="past-book">অনন্ত নক্ষত্র বিথী</span>
+                <span class="past-book">জোছনা ও জননীর গল্প</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
     </div>
