@@ -419,6 +419,34 @@ section { position: relative; z-index: 1; }
 }
 .about-text p strong { color: var(--text); font-weight: 500; }
 .about-text p em { color: var(--teal); font-style: normal; }
+.news-section {
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+}
+.news-heading {
+  font-family: var(--font-disp);
+  font-size: 1.3rem; color: var(--text);
+  margin-bottom: 1rem;
+}
+.news-list { list-style: none; padding: 0; margin: 0; }
+.news-list li {
+  font-size: 0.92rem; color: var(--muted);
+  line-height: 1.7; padding: 0.5rem 0;
+  border-bottom: 0.5px solid var(--border);
+}
+.news-list li:last-child { border-bottom: none; }
+.news-list li strong { color: var(--text); font-weight: 600; }
+.news-date {
+  font-family: var(--font-mono); font-size: 0.78rem;
+  color: var(--muted2); margin-right: 0.3rem;
+}
+.news-tag {
+  font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+  background: var(--teal); color: var(--bg);
+  padding: 0.12rem 0.4rem; margin-right: 0.4rem;
+  letter-spacing: 0.05em; border-radius: 2px;
+}
 .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
 .info-row {
   display: flex; flex-direction: column; gap: 0.25rem;
@@ -937,6 +965,18 @@ footer {
         <p>At the Living Innovation Lab, I develop <strong>real-time pipelines fusing LiDAR, RGB-T cameras, and GNSS</strong> on edge hardware for warehouse robots — from change detection to 6DOF end-effector pose estimation for robotic arms. My research has been deployed on actual hardware, not just benchmarks.</p>
         <p>My CoRL 2024 workshop paper introduced an <strong>LLM-augmented planning approach</strong> for robot object search — using language model predictions to bias navigation toward semantically plausible locations, reducing search steps significantly. This direction continues into a forthcoming <strong>IROS 2026</strong> paper on LLM-informed object search via model-based planning and prompt selection.</p>
         <p>Before GMU, I published Q1 research at BRAC University and shipped embedded ML systems on <strong>Jetson Nano</strong> for real-time vehicle perception at Arthor Limited. I placed <strong>3rd and 4th at the University Rover Challenge</strong> — one of the few competitions where the robot has to survive in the real world, not just a simulation.</p>
+
+        <div class="news-section">
+          <div class="news-heading">News</div>
+          <ul class="news-list">
+            <li><span class="news-tag">NEW</span> <span class="news-date">[06/16/2026]</span> One paper accepted by <strong>IROS 2026</strong>.</li>
+            <li><span class="news-date">[11/2024]</span> First-author workshop paper presented at <strong>CoRL 2024</strong>.</li>
+            <li><span class="news-date">[08/2024]</span> Joined the Living Innovation Lab, GMU, working on real-time multi-sensor perception for warehouse robots.</li>
+            <li><span class="news-date">[05/2024]</span> Started PhD at George Mason University.</li>
+            <li><span class="news-date">[2023]</span> Published in <strong>IEEE JBHI</strong> (Q1, IF 6.8) as first author.</li>
+            <li><span class="news-date">[2021]</span> Graduated from BRAC University; began ML research on medical imaging and vision transformers.</li>
+          </ul>
+        </div>
       </div>
       <div class="about-sidebar reveal">
         <div class="info-row">
