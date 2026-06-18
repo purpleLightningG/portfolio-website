@@ -944,7 +944,7 @@ document.querySelectorAll('a,button,.proj-card,.exp-item,.stat,.pub-item,.book,.
 
 const themeBtn=document.getElementById('themeToggle');
 const saved=localStorage.getItem('theme');
-if(saved==='light'){document.body.classList.add('light');themeBtn.textContent='☽';}
+if(saved!=='dark'){document.body.classList.add('light');themeBtn.textContent='☽';}
 themeBtn.addEventListener('click',()=>{const isLight=document.body.classList.toggle('light');themeBtn.textContent=isLight?'☽':'☀';localStorage.setItem('theme',isLight?'light':'dark');});
 const revealEls=document.querySelectorAll('.reveal');
 const io=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*60);});},{threshold:0.1});

@@ -847,7 +847,7 @@ footer {
 <div class="page-main">
   <section id="contact" style="background:var(--bg2);">
     <div class="sec-wrap" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
-      <p class="contact-super">Open to Summer 2026 Research Internships</p>
+      <p class="contact-super">Open to Summer 2027 Research Internships</p>
       <h2 class="contact-title">Let's build<br><em>something real</em></h2>
       <div class="contact-links reveal">
         <button onclick="copyEmail()" class="contact-link" id="email-btn" style="background:transparent;border:1px solid var(--border);font-family:var(--font-head);color:var(--muted);overflow:visible;">
@@ -898,7 +898,7 @@ document.querySelectorAll('a,button,.proj-card,.exp-item,.stat,.pub-item,.book,.
 
 const themeBtn=document.getElementById('themeToggle');
 const saved=localStorage.getItem('theme');
-if(saved==='light'){document.body.classList.add('light');themeBtn.textContent='☽';}
+if(saved!=='dark'){document.body.classList.add('light');themeBtn.textContent='☽';}
 themeBtn.addEventListener('click',()=>{const isLight=document.body.classList.toggle('light');themeBtn.textContent=isLight?'☽':'☀';localStorage.setItem('theme',isLight?'light':'dark');});
 const revealEls=document.querySelectorAll('.reveal');
 const io=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*60);});},{threshold:0.1});

@@ -972,7 +972,7 @@ footer {
             <li><span class="news-tag">NEW</span> <span class="news-date">[06/16/2026]</span> One paper accepted by <strong>IROS 2026</strong>.</li>
             <li><span class="news-date">[11/2024]</span> First-author workshop paper presented at <strong>CoRL 2024</strong>.</li>
             <li><span class="news-date">[08/2024]</span> Joined the Living Innovation Lab, GMU, working on real-time multi-sensor perception for warehouse robots.</li>
-            <li><span class="news-date">[05/2024]</span> Started PhD at George Mason University.</li>
+            <li><span class="news-date">[05/2024]</span> Began graduate research at George Mason University.</li>
             <li><span class="news-date">[2023]</span> Published in <strong>IEEE JBHI</strong> (Q1, IF 6.8) as first author.</li>
             <li><span class="news-date">[2021]</span> Graduated from BRAC University; began ML research on medical imaging and vision transformers.</li>
           </ul>
@@ -1068,7 +1068,7 @@ document.querySelectorAll('a,button,.proj-card,.exp-item,.stat,.pub-item,.book,.
 
 const themeBtn=document.getElementById('themeToggle');
 const saved=localStorage.getItem('theme');
-if(saved==='light'){document.body.classList.add('light');themeBtn.textContent='☽';}
+if(saved!=='dark'){document.body.classList.add('light');themeBtn.textContent='☽';}
 themeBtn.addEventListener('click',()=>{const isLight=document.body.classList.toggle('light');themeBtn.textContent=isLight?'☽':'☀';localStorage.setItem('theme',isLight?'light':'dark');});
 const revealEls=document.querySelectorAll('.reveal');
 const io=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*60);});},{threshold:0.1});
